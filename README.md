@@ -69,13 +69,17 @@ WantedBy=multi-user.target
 In this example, replace the following placeholders with your actual values:
 
 yourusername: The username of the user that will run the service.
+
 /path/to/your/flask/app: The path to the directory containing your Flask application.
+
 /path/to/your/python/environment/bin/python: The path to the Python executable in your virtual environment.
 
 To use this service file:
 
 Save it as disk-endpoint.service in the /etc/systemd/system directory.
+
 Enable the service to start on boot with the command sudo systemctl enable disk-endpoint.
+
 Start the service with the command sudo systemctl start disk-endpoint.
 
 You can check the status of the service with the command sudo systemctl status disk-endpoint.
