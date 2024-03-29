@@ -6,13 +6,6 @@ Disk Endpoint is a Flask application that provides an endpoint to get disk infor
 Clone the repository:
 
      git clone https://github.com/yourusername/disk-endpoint.git
-    
-Navigate to the project directory:
-
-      cd disk-endpoint
-Install the required Python packages:
-     
-      pip install -r requirements.txt 
 
 ## Configuration
 
