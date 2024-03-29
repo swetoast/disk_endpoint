@@ -16,7 +16,7 @@ Install the required Python packages:
 
 ## Configuration
 
-The application reads its configuration from a file named disk_endpoint.conf in the same directory. Here’s an example of what the configuration file might look like:
+The application reads its configuration from a file named `disk_endpoint.conf` in the same directory. Here’s an example of what the configuration file might look like:
 ```
 [DEFAULT]
 HOST = 127.0.0.1
@@ -40,7 +40,7 @@ You can use Disk Endpoint with Home Assistant by setting up a RESTful sensor. He
 ```yaml
 sensor:
   - platform: rest
-    resource: http://your_flask_app_url/disk_info?token=your_predefined_token
+    resource: http://ip:port/disk_info?token=your_predefined_token
     name: Disk Info
     value_template: '{{ value_json.name }}'
     json_attributes:
@@ -48,7 +48,7 @@ sensor:
       - serial
       - health_status
 ```
-In this example, replace http://your_flask_app_url/disk_info?token=your_predefined_token with the actual URL of your Flask app’s endpoint and your actual token. The value_template is used to extract the value that will be displayed for the sensor in Home Assistant, and json_attributes is used to extract additional attributes from the JSON response.
+In this example, `http://ip:port/disk_info?token=your_predefined_token` with the actual URL of your Flask app’s endpoint and your actual token. The value_template is used to extract the value that will be displayed for the sensor in Home Assistant, and json_attributes is used to extract additional attributes from the JSON response.
 ## Systemd Service
 
 You can also run the application as a systemd service. Here’s an example of a systemd service file:
@@ -59,30 +59,23 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory=/path/to/your/flask/app
-ExecStart=/path/to/your/python/environment/bin/python app.py
+WorkingDirectory=/path/to/your/directory/
+ExecStart=python3 /path/to/your/directory/disk_endpoint.py
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
 ```
-In this example, replace the following placeholders with your actual values:
-
-yourusername: The username of the user that will run the service.
-
-/path/to/your/flask/app: The path to the directory containing your Flask application.
-
-/path/to/your/python/environment/bin/python: The path to the Python executable in your virtual environment.
 
 To use this service file:
 
-Save it as disk-endpoint.service in the /etc/systemd/system directory.
+Save it as `disk-endpoint.service` in the `/etc/systemd/system` directory.
 
-Enable the service to start on boot with the command sudo systemctl enable disk-endpoint.
+Enable the service to start on boot with the command `sudo systemctl enable disk-endpoint.service`
 
-Start the service with the command sudo systemctl start disk-endpoint.
+Start the service with the command `sudo systemctl start disk-endpoint`.
 
-You can check the status of the service with the command sudo systemctl status disk-endpoint.
+You can check the status of the service with the command `sudo systemctl status disk-endpoint`.
 ## License
 
 This project is licensed under the terms of The Unlicense.
