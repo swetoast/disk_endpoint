@@ -27,28 +27,6 @@ KEY_PATH = /path/to/key.key
 TOKEN = your_predefined_token
 ```
 Replace `/path/to/certificate.crt` and `/path/to/key.key` with the actual paths to your SSL certificate and key files if you are using HTTPS and enable the boolean to `True`. Also, `replace your_predefined_token` with the actual token you want to use for authentication.
-Running the Application
-
-You can run the application with the following command:
-
-sudo python app.py
-
-## Using with Home Assistant
-
-You can use Disk Endpoint with Home Assistant by setting up a RESTful sensor. Here’s an example of how you might set it up:
-
-```yaml
-sensor:
-  - platform: rest
-    resource: http://ip:port/disk_info?token=your_predefined_token
-    name: Disk Info
-    value_template: '{{ value_json.name }}'
-    json_attributes:
-      - model
-      - serial
-      - health_status
-```
-In this example, `http://ip:port/disk_info?token=your_predefined_token` with the actual URL of your Flask app’s endpoint and your actual token. The value_template is used to extract the value that will be displayed for the sensor in Home Assistant, and json_attributes is used to extract additional attributes from the JSON response.
 ## Systemd Service
 
 You can also run the application as a systemd service. Here’s an example of a systemd service file:
@@ -76,6 +54,22 @@ Enable the service to start on boot with the command `sudo systemctl enable disk
 Start the service with the command `sudo systemctl start disk-endpoint`.
 
 You can check the status of the service with the command `sudo systemctl status disk-endpoint`.
+## Using with Home Assistant
+
+You can use Disk Endpoint with Home Assistant by setting up a RESTful sensor. Here’s an example of how you might set it up:
+
+```yaml
+sensor:
+  - platform: rest
+    resource: http://ip:port/disk_info?token=your_predefined_token
+    name: Disk Info
+    value_template: '{{ value_json.name }}'
+    json_attributes:
+      - model
+      - serial
+      - health_status
+```
+In this example, `http://ip:port/disk_info?token=your_predefined_token` with the actual URL of your Flask app’s endpoint and your actual token. The value_template is used to extract the value that will be displayed for the sensor in Home Assistant, and json_attributes is used to extract additional attributes from the JSON response.
 ## License
 
 This project is licensed under the terms of The Unlicense.
