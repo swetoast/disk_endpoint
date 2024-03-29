@@ -1,4 +1,4 @@
-Disk Endpoint
+## Disk Endpoint
 
 Disk Endpoint is a Flask application that provides an endpoint to get disk information. It uses the nvme list and smartctl commands to gather information about NVMe drives and other drives in the system. The information includes the name, model, serial number, and health status of each disk.
 Installation
@@ -10,7 +10,7 @@ Installation
     Install the required Python packages:
     pip install -r requirements.txt
 ```
-Configuration
+## Configuration
 
 The application reads its configuration from a file named disk_endpoint.conf in the same directory. Here’s an example of what the configuration file might look like:
 ```
@@ -29,7 +29,7 @@ You can run the application with the following command:
 
 python app.py
 
-Using with Home Assistant
+## Using with Home Assistant
 
 You can use Disk Endpoint with Home Assistant by setting up a RESTful sensor. Here’s an example of how you might set it up:
 
@@ -45,7 +45,7 @@ sensor:
       - health_status
 ```
 In this example, replace http://your_flask_app_url/disk_info?token=your_predefined_token with the actual URL of your Flask app’s endpoint and your actual token. The value_template is used to extract the value that will be displayed for the sensor in Home Assistant, and json_attributes is used to extract additional attributes from the JSON response.
-Systemd Service
+## Systemd Service
 
 You can also run the application as a systemd service. Here’s an example of a systemd service file:
 ```systemd
@@ -75,6 +75,6 @@ To use this service file:
     Start the service with the command sudo systemctl start disk-endpoint.
 ```
 You can check the status of the service with the command sudo systemctl status disk-endpoint.
-License
+## License
 
 This project is licensed under the terms of The Unlicense.
