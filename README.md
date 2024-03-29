@@ -1,7 +1,7 @@
 ## Disk Endpoint
 
 Disk Endpoint is a Flask application that provides an endpoint to get disk information. It uses the nvme list and smartctl commands to gather information about NVMe drives and other drives in the system. The information includes the name, model, serial number, and health status of each disk.
-Installation
+## Installation
 
 Clone the repository:
 
