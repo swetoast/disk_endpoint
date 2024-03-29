@@ -22,11 +22,11 @@ The application reads its configuration from a file named `disk_endpoint.conf` i
 HOST = 127.0.0.1
 PORT = 5000
 USE_HTTPS = False
-CERTIFICATE_PATH = /path/to/certificate.pem
-KEY_PATH = /path/to/key.pem
+CERTIFICATE_PATH = /path/to/certificate.crt
+KEY_PATH = /path/to/key.key
 TOKEN = your_predefined_token
 ```
-Replace /path/to/certificate.pem and /path/to/key.pem with the actual paths to your SSL certificate and key files if you are using HTTPS. Also, replace your_predefined_token with the actual token you want to use for authentication.
+Replace `/path/to/certificate.crt` and `/path/to/key.key` with the actual paths to your SSL certificate and key files if you are using HTTPS and enable the boolean to `True`. Also, `replace your_predefined_token` with the actual token you want to use for authentication.
 Running the Application
 
 You can run the application with the following command:
