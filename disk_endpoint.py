@@ -77,7 +77,35 @@ def get_disk_info():
     combined_disk_info = nvme_disk_info + other_disk_info
     unique_disk_info = [dict(t) for t in set(tuple(d.items()) for d in combined_disk_info)]
 
-    return jsonify(unique_disk_info)
+    # Create a dictionary where each key is a disk name and the value is the disk info
+    disk_info_dict = {disk['name']: disk for disk in unique_disk_info}
+
+    return jsonify(disk_info_dict)
+
+@app.route('/disk_info/<disk_name>', methods=['GET'])
+def get_specific_disk_info(disk_name):
+    config = read_config()
+    token = config.get('DEFAULT', 'TOKEN')
+
+    # Input validation
+    if not request.args.get('token') == token:
+        return jsonify({"error": "Invalid token"}), 403
+
+    nvme_disk_info = get_nvme_disk_info()
+    other_disk_info = get_other_disk_info()
+
+    # Combine the disk info and remove duplicates
+    combined_disk_info = nvme_disk_info + other_disk_info
+    unique_disk_info = [dict(t) for t in set(tuple(d.items()) for d in combined_disk_info)]
+
+    # Create a dictionary where each key is a disk name and the value is the disk info
+    disk_info_dict = {disk['name']: disk for disk in unique_disk_info}
+
+    # Return the info of the specific disk
+    if disk_name in disk_info_dict:
+        return jsonify(disk_info_dict[disk_name])
+    else:
+        return jsonify({"error": "Disk not found"}), 404
 
 def read_config():
     config = configparser.ConfigParser()
