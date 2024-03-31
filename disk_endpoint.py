@@ -73,7 +73,11 @@ def get_disk_info():
     nvme_disk_info = get_nvme_disk_info()
     other_disk_info = get_other_disk_info()
 
-    return jsonify(nvme_disk_info + other_disk_info)
+    # Combine the disk info and remove duplicates
+    combined_disk_info = nvme_disk_info + other_disk_info
+    unique_disk_info = [dict(t) for t in set(tuple(d.items()) for d in combined_disk_info)]
+
+    return jsonify(unique_disk_info)
 
 def read_config():
     config = configparser.ConfigParser()
