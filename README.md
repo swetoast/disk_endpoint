@@ -636,9 +636,3 @@ This is correct behaviour. NVMe-specific sensors (wear, available spare, media e
 **Entities are created but always show `unknown`**
 
 The API is reachable but returning `null` for those fields. This usually means smartctl cannot read SMART data for that device (see USB enclosure note above). Check the `errors` field on the disk in `GET /disks/{name}`.
-
----
-
-## License
-
-MIT
