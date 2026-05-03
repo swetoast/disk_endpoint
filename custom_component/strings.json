@@ -1,0 +1,26 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect to Disk & RAID Monitor",
+        "description": "Enter the address of your disk-monitor API server.",
+        "data": {
+          "host": "Host or IP address",
+          "port": "Port",
+          "api_key": "API key (leave empty if authentication is disabled)",
+          "use_https": "Use HTTPS",
+          "verify_ssl": "Verify SSL certificate",
+          "scan_interval": "Poll interval (seconds)"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the server. Check the host and port.",
+      "invalid_auth": "Invalid API key. Check the key in your disk_monitor.conf.",
+      "unknown": "An unexpected error occurred. Check the Home Assistant logs."
+    },
+    "abort": {
+      "already_configured": "This server is already configured."
+    }
+  }
+}
